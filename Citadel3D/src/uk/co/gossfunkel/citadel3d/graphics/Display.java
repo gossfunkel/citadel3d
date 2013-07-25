@@ -11,8 +11,8 @@ import javax.swing.JFrame;
 public class Display extends Canvas implements Runnable {
 	
 	private static final long serialVersionUID = 1L;
-	private static final int WIDTH = 1000;
-	private static final int HEIGHT = WIDTH/16*9;
+	public static final int WIDTH = 960;
+	public static final int HEIGHT = WIDTH/16*9;
 	private static JFrame frame;
 	
 	private static BufferedImage img;
@@ -46,7 +46,6 @@ public class Display extends Canvas implements Runnable {
 		}
 		for (int i = 0; i < render.pixels.length; i++) {
 			pixels[i] = render.pixels[i];
-			if (pixels[i] == 0) System.out.println("NOTHING");
 		}
 		
 		Graphics2D g = (Graphics2D) bs.getDrawGraphics();

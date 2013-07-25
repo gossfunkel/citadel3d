@@ -16,14 +16,18 @@ public class Render {
 		pixels = new int[w*h];
 	}
 	
-	public void draw (int xOffs, int yOffs) {
-		int yPix, xPix = -1;
+	public void draw () {
 		for (int y = 0; y < HEIGHT; y++) {
-			yPix = y + yOffs;
 			for (int x = 0; x < WIDTH; x++) {
-				xPix = x + xOffs;
-				pixels[xPix+yPix*WIDTH] = random.nextInt();
+				if ((x+y*WIDTH) > pixels.length-1) continue; 
+				pixels[x+y*WIDTH] = random.nextInt();
 			}
+		}
+	}
+	
+	public void clear() {
+		for (int i = 0; i < pixels.length; i++) {
+			pixels[i] = 0;
 		}
 	}
 

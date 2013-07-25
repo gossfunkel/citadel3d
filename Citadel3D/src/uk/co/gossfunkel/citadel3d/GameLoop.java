@@ -18,7 +18,7 @@ public class GameLoop implements Runnable{
 		tdisplay = new Thread(display);
 		tdisplay.run();
 		
-		render = new Render(display.getWidth(), display.getHeight());
+		render = new Render(Display.WIDTH, Display.HEIGHT);
 		
 		running = true;
 	}
@@ -54,7 +54,8 @@ public class GameLoop implements Runnable{
 	}
 	
 	private void draw() {
-		render.draw(0, 0);
+		render.clear();
+		render.draw();
 		display.draw(render);
 	}
 
