@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Render {
 
-	private static Random random;
+	private Random random;
 	public final int WIDTH;
 	public final int HEIGHT;
 	public int[] pixels;
@@ -16,11 +16,13 @@ public class Render {
 		pixels = new int[w*h];
 	}
 	
-	public void draw () {
+	public void drawNoise() {
+		int alpha = -1;
 		for (int y = 0; y < HEIGHT; y++) {
 			for (int x = 0; x < WIDTH; x++) {
 				if ((x+y*WIDTH) > pixels.length-1) continue; 
-				pixels[x+y*WIDTH] = random.nextInt();
+				alpha = random.nextInt();
+				if (alpha > 0) pixels[x+y*WIDTH] = alpha;
 			}
 		}
 	}
