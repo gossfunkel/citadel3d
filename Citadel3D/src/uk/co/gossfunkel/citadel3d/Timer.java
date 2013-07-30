@@ -1,5 +1,7 @@
 package uk.co.gossfunkel.citadel3d;
 
+import org.lwjgl.Sys;
+
 public class Timer {
 	
 	// -------------------- variables -----------------------------------------
@@ -21,12 +23,12 @@ public class Timer {
 	
 	public Timer() {
 		
-		lastTime = System.nanoTime();
+		lastTime = getTime();
 		now = lastTime;
 		delta = 0.0;
 		frames = 0;
 		updates = 0;
-		second = System.currentTimeMillis();
+		second = getTime();
 		
 	}
 	
@@ -35,7 +37,7 @@ public class Timer {
 	public void tick() {
 		
 		lastTime = now;
-		now = System.nanoTime();
+		now = getTime();
 		delta += (now - lastTime) / ns;
 		frames++;
 		
@@ -74,6 +76,10 @@ public class Timer {
 	}
 	
 	// -------------------- getters -------------------------------------------
+	
+	public long getTime() {
+		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
+	}
 	
 	public double getDelta() {
 		// return nanosecond difference between now and lastTime

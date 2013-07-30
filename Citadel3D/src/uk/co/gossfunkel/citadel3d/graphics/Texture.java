@@ -7,7 +7,8 @@ import javax.imageio.ImageIO;
 
 public class Texture {
 	
-	public static Render floor = loadBitmap("/textures/grass.png");
+	public static Render grass = loadBitmap("/textures/grass.png");
+	public static Render debug = loadBitmap("/textures/debug.png");
 	
 	public static Render loadBitmap(String filename) {
 		Render render = null;

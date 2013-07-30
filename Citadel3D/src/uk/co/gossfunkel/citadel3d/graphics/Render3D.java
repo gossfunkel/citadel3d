@@ -20,6 +20,8 @@ public class Render3D extends Render {
 	}
 	
 	public void floor(int ydirection, int xrotation, int xdirection) {
+		Render texture = Texture.grass;
+		
 		if (ydirection > 0) ymove -= 0.5;
 		if (ydirection < 0) ymove += 0.5;
 		//if (xrotation > 0) xrotate += 0.01;
@@ -40,7 +42,7 @@ public class Render3D extends Render {
 			//yDepth = (y - HEIGHT / ymove) / HEIGHT;
 			yDepth = (y - HEIGHT / 2.0) / HEIGHT;
 			
-			z = 8.0 / yDepth;
+			z = 30.0 / yDepth;
 			
 			if (yDepth < 0) z = CEILING_HEIGHT / -yDepth;
 			
@@ -51,7 +53,8 @@ public class Render3D extends Render {
 				yy = (int) ((z + ymove) * cosine - xDepth * sine);
 				
 				zBuffer[x+y*WIDTH] = z;
-				if (z < 800) pixels[x+y*WIDTH] = ((xx&15)*16) | ((yy&15)*16)<<8;
+				if (z < 800) pixels[x+y*WIDTH] = texture.pixels[
+				   (xx&(texture.WIDTH-1))+(yy&(texture.HEIGHT-1))*texture.WIDTH];
 			}
 		}
 	}
