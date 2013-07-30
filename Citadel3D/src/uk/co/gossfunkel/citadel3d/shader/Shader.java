@@ -33,13 +33,13 @@ public class Shader {
 	public void compileShader() throws ShaderLoadException {
 		glLinkProgram(program);
 		
-		if (glGetShaderi(program, GL_LINK_STATUS) == 0) {
+		if (glGetProgrami(program, GL_LINK_STATUS) == 0) {
 			throw new ShaderLoadException(glGetShaderInfoLog(program, 1024));
 		}
 		
 		glValidateProgram(program);
 		
-		if (glGetShaderi(program, GL_VALIDATE_STATUS) == 0) {
+		if (glGetProgrami(program, GL_VALIDATE_STATUS) == 0) {
 			throw new ShaderLoadException(glGetShaderInfoLog(program, 1024));
 		}
 	}
@@ -56,6 +56,6 @@ public class Shader {
 			throw new ShaderLoadException(glGetShaderInfoLog(shader, 1024));
 		}
 		
-		glAttachShader(shader, program);
+		glAttachShader(program, shader);
 	}
 }
